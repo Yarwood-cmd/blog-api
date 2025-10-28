@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from config import Config
@@ -16,6 +16,15 @@ def create_app():
     
     # Register blueprints
     app.register_blueprint(api, url_prefix='/api')
+    
+    # Root route
+    @app.route('/')
+    def root():
+        return jsonify({
+            'message': 'Welcome to the Blog API!',
+            'documentation': '/api/',
+            'status': 'running'
+        }), 200
     
     # Create database tables
     with app.app_context():
