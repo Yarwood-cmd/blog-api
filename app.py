@@ -27,10 +27,4 @@ if __name__ == '__main__':
     app = create_app()
     app.run(debug=False, host='0.0.0.0')
 
-# For production
 app = create_app()
-```
-
-**Create a new file called `Procfile`** (no extension) with this content:
-```
-web: gunicorn app:app
