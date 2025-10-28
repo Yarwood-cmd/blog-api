@@ -4,6 +4,17 @@ from models import db, User, Post
 
 api = Blueprint('api', __name__)
 
+@api.route('/', methods=['GET'])
+def home():
+    return jsonify({
+        'message': 'Welcome to the Blog API!',
+        'endpoints': {
+            'register': '/api/register',
+            'login': '/api/login',
+            'posts': '/api/posts'
+        }
+    }), 200
+
 # User Registration
 @api.route('/register', methods=['POST'])
 def register():
